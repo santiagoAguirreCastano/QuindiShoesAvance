@@ -9,6 +9,7 @@ class UserService {
     
     static async register(user: User) {
         user.password = await generateHash(user.password);
+        console.log(user.password)
         return await UserRepository.addUser(user);
     }
 
@@ -16,9 +17,7 @@ class UserService {
         return await UserRepository.loginUser(auth);
     }
 
-    static async addProducto(producto: Producto) {
-        return await UserRepository.addProducto(producto);
-    }
+  
 }
 
 export default UserService;

@@ -14,7 +14,7 @@ class User {
         this._telefono = telefono;
         this._direction = direction;
         this._email = email;
-        this._password = password
+        this._password = password;
     }
 
     // Getters

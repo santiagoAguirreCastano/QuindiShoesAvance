@@ -11,7 +11,6 @@ class UserRepository {
         const sql = 'call Insertar_usuarios(?, ?, ?, ?, ?, ?);';
         const values = [user.nombres,user.apellidos,user.telefono,user.direction,user.email,user.password];
         return db.execute(sql, values);
-
     }
 
     static async loginUser(auth: Auth) {
@@ -30,14 +29,11 @@ class UserRepository {
               return { logged: false, status: "Invalid username or password" };
           }
   
-          console.log("Contraseña ingresada:", auth.password);
-          console.log("Contraseña almacenada en BD:", result[0].contraseña);
-  
           if (!result[0].contraseña) {
               console.log("Error: la contraseña en la base de datos es NULL o undefined.");
               return { logged: false, status: "Invalid username or password" };
           }
-  
+         
           const isPasswordValid = await bcrypt.compare(auth.password, result[0].contraseña);
   
           if (isPasswordValid) {
@@ -51,11 +47,7 @@ class UserRepository {
           return { logged: false, status: "Server error" };
       }
   }
-  static async addProducto(producto: Producto) {
-    const sql = 'call Insertar_producto(?, ?, ?, ?, ?, ?, ?);';
-    const values = [producto.tipoProducto, producto.nombreProducto, producto.generoProducto, producto.precioProducto, producto.cantidadProducto,producto.tallaProducto,producto.imagenProducto];
-    return db.execute(sql, values);
-  }
+ 
 }
 
 
